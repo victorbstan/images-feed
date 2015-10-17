@@ -13,7 +13,9 @@
     "bunyan": "^1.3.5",
     "flickrapi": "^0.3.36",
     "instagram-node": "^0.5.8",
+    "lodash": "^3.10.1",
     "paper-router": "^0.5.8",
+    "q": "^1.4.1",
     "require-all": "^1.1.0",
     "restify": "^3.0.2"
   },

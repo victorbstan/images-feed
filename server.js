@@ -22,6 +22,11 @@ var server = restify.createServer({
   log: log
 });
 
+server.on('uncaughtException', function(req, res, route, err) {
+  console.error(err.stack);
+  process.exit(1);
+});
+
 server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);
 });
@@ -47,7 +52,7 @@ server.pre(function(req, res, next) {
 
 // feed
 server.get('/feed', imagesController.feed);
-server.get('/image/:id', imagesController.image);
+server.get('/image/:provider/:id', imagesController.image);
 
 // public - app entry
 server.get(/\/?.*/, restify.serveStatic({
