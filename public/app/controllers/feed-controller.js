@@ -16,7 +16,6 @@ App.controller('feedController', function($scope, $http) {
 
     $http.get('/feed', {params: {page: page}})
     .success(function(data, status, headers, config) {
-      // console.log('SUCCESS', data, status, headers, config);
       console.log('DATA', data);
       appendImagesToFeed(data);
     })

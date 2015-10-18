@@ -62,7 +62,7 @@ exports.getImages = function(page, callback) {
   ig.user_media_recent('4851835', function(error, medias, pagination, remaining, limit) {
     // ig.media_popular(function(error, medias, remaining, limit) {
     if (error) {
-      console.log('error', error);
+      console.log('ERROR', error);
       return;
     }
     console.log('INSTAGRAM RESPONSE', pagination, remaining, limit);
@@ -79,7 +79,7 @@ exports.getOneImage = function(id, callback) {
 
   ig.media(id, function(error, media, remaining, limit) {
     if (error) {
-      console.log('error', error);
+      console.log('ERROR', error);
       return;
     }
 
@@ -113,6 +113,4 @@ exports.getOneImage = function(id, callback) {
 
     callback(imageModel);
   });
-
-  // callback(id);
 };

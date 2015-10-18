@@ -58,7 +58,7 @@ exports.getImages = function(page, callback) {
     },
     function(error, results) {
       if (error) {
-        console.log('error', error);
+        console.log('ERROR', error);
         return;
       }
 
@@ -68,7 +68,6 @@ exports.getImages = function(page, callback) {
       var photos = results.photos;
 
       var formattedResponse = formatResponse(photos);
-      // console.log('500px formattedResponse', formattedResponse);
 
       return callback(formattedResponse);
     }
@@ -83,7 +82,7 @@ exports.getOneImage = function(id, callback) {
     console.log(media);
 
     if (error) {
-      console.log('error', error);
+      console.log('ERROR', error);
       return;
     }
 
@@ -120,6 +119,4 @@ exports.getOneImage = function(id, callback) {
 
     callback(imageModel);
   });
-
-  // callback(id);
 };

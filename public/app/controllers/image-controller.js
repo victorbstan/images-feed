@@ -6,7 +6,6 @@ App.controller('imageController', function($scope, $http, $location, $anchorScro
 
   $http.get($location.path())
   .success(function(data, status, headers, config) {
-    // console.log('SUCCESS', data, status, headers, config);
     console.log('DATA', data);
     $scope.image = data;
     $anchorScroll();

@@ -13,7 +13,6 @@ var getImages = function(page, callback) {
     var deferred = Q.defer();
 
     apiWrapper500px.getImages(page, function(imagesFrom500px) {
-      // console.log('PROMISE imagesFrom500px', imagesFrom500px);
 
       if (imagesFrom500px) {
         deferred.resolve(imagesFrom500px);
@@ -29,7 +28,6 @@ var getImages = function(page, callback) {
     var deferred = Q.defer();
 
     apiWrapperInstagram.getImages(page, function(imagesFromInstagram) {
-      // console.log('PROMISE imagesFromInstagram', imagesFromInstagram);
 
       if (imagesFromInstagram) {
         deferred.resolve(imagesFromInstagram);
@@ -49,27 +47,18 @@ var getImages = function(page, callback) {
 
   Q.all(promises)
   .then(function(results) {
-    console.log('PROMISE RESULTS', results.length);
-
-    console.log('here');
 
     var allImages = [];
     _.each(results, function(result) {
-      console.log('RESULT', result.length);
-
       allImages.push(result);
     });
     var data = _.flatten(allImages);
-
-    console.log('here 2', data.length, allImages.length);
 
     callback(data);
   });
 };
 
 var getImageForProviderAndId = function(provider, id, callback) {
-  console.log('getImageForProviderAndId', provider, id);
-
   var data = {
     url: 'http://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg',
     username: 'Bob',
@@ -98,9 +87,6 @@ var getImageForProviderAndId = function(provider, id, callback) {
 // ACTIONS
 
 exports.feed = function(req, res, next) {
-
-  console.log('params', req.params);
-  console.log('query', req.query);
   var page = req.params.page || 1;
 
   getImages(page, function(result) {
@@ -115,7 +101,6 @@ exports.image = function(req, res, next) {
 
   var provider = req.params.provider;
   var id = req.params.id;
-  console.log('IMAGE: provider, id', provider, id);
 
   getImageForProviderAndId(provider, id, function(result) {
     res.send(result);
