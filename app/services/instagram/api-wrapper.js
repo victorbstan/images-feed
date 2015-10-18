@@ -39,9 +39,9 @@ var formatResponse = function(list) {
               text: comment.text,
               likes: null,
               created: comment.created_time
-            }
+            };
           })
-        }
+        };
       }
 
       var imageModel = new Image();
@@ -103,9 +103,9 @@ exports.getOneImage = function(id, callback) {
             text: comment.text,
             likes: null,
             created: comment.created_time
-          }
+          };
         })
-      }
+      };
     }
 
     var imageModel = new Image();

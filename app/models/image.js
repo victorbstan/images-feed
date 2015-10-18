@@ -20,6 +20,6 @@ exports.Image = function() {
         created: '',
       }
     }
-  }
+  };
 
 };

@@ -63,8 +63,8 @@ exports.getImages = function(page, callback) {
       }
 
       var currentPage = results.current_page;
-      var total_pages = results.total_pages;
-      var total_items = results.total_items;
+      var totalPages = results.total_pages;
+      var totalItems = results.total_items;
       var photos = results.photos;
 
       var formattedResponse = formatResponse(photos);
@@ -109,9 +109,9 @@ exports.getOneImage = function(id, callback) {
             text: comment,
             likes: null,
             created: null
-          }
+          };
         })
-      }
+      };
     }
 
     var imageModel = new Image();

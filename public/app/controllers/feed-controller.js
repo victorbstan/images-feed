@@ -7,7 +7,7 @@ App.controller('feedController', function($scope, $http) {
   var pageCounter = 1;
 
   var appendImagesToFeed = function(images) {
-    $scope.feed = $scope.feed.concat(images);
+    $scope.feed = _.uniq($scope.feed.concat(images), 'referenceId');
     console.log('$scope.feed', $scope.feed);
   };
 

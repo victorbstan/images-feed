@@ -7,7 +7,7 @@ var apiWrapper500px = require('../services/500px/api-wrapper.js');
 var apiWrapperInstagram = require('../services/instagram/api-wrapper.js');
 
 var getImages = function(page, callback) {
-  var page = (page || 1);
+  page = (page || 1);
 
   var promise1 = function() {
     var deferred = Q.defer();
@@ -52,7 +52,7 @@ var getImages = function(page, callback) {
     _.each(results, function(result) {
       allImages.push(result);
     });
-    var data = _.flatten(allImages);
+    var data = _.uniq(_.flatten(allImages));
 
     callback(data);
   });
@@ -76,11 +76,10 @@ var getImageForProviderAndId = function(provider, id, callback) {
   case 'Instagram':
     apiWrapperInstagram.getOneImage(id, function(data) {
       callback(data);
-    })
+    });
     break;
   default:
     throw 'Invalid provider';
-    callback(null);
   }
 };
 

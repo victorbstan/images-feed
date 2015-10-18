@@ -11,10 +11,11 @@ module.exports = function(grunt) {
       ],
       options: {
         node: true,
-        predef: ['angular'],
+        predef: ['window', 'angular', '_'],
         globals: {
           jQuery: true,
-          App: true
+          App: true,
+          _: true
         }
       }
     },
@@ -53,6 +54,7 @@ module.exports = function(grunt) {
           'public/lib/less/dist/less.min.js',
           'public/lib/angular/angular.min.js',
           'public/lib/angular-route/angular-route.min.js',
+          'public/lib/lodash/lodash.min.js',
           'public/app/**/*.js'
         ],
         dest: 'public/dist/app.js',
