@@ -16,7 +16,7 @@ var formatResponse = function(list) {
   console.log('formatResponse', list.length);
 
   var result = _.map(list, function(item) {
-    console.log('item', item);
+    // console.log('item', item);
 
     if (item.type === 'image') {
       var image = {};
@@ -59,12 +59,13 @@ var formatResponse = function(list) {
 exports.getImages = function(page, callback) {
   // console.log('Instagram getImages');
 
-  ig.media_popular(function(error, medias, remaining, limit) {
+  ig.user_media_recent('4851835', function(error, medias, pagination, remaining, limit) {
+    // ig.media_popular(function(error, medias, remaining, limit) {
     if (error) {
       console.log('error', error);
       return;
     }
-    console.log('INSTAGRAM RESPONSE', remaining, limit);
+    console.log('INSTAGRAM RESPONSE', pagination, remaining, limit);
 
     var formattedResponse = formatResponse(medias);
     // console.log('INSTAGRAM', formattedResponse);
@@ -91,7 +92,7 @@ exports.getOneImage = function(id, callback) {
     image.votes = media.likes ? media.likes.count : null;
     image.views = null;
     image.caption = media.caption ? media.caption.text : null;
-    image.created = new Date(item.created_time * 1000);
+    image.created = new Date(media.created_time * 1000);
 
     if (media.comments) {
       image.comments = {

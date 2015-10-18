@@ -4,12 +4,16 @@ App.controller('feedController', function($scope, $http) {
 
   $scope.feed = [];
 
+  var pageCounter = 1;
+
   var appendImagesToFeed = function(images) {
     $scope.feed = $scope.feed.concat(images);
     console.log('$scope.feed', $scope.feed);
   };
 
   var getImages = function(page) {
+    console.log('getImages, page', page);
+
     $http.get('/feed', {params: {page: page}})
     .success(function(data, status, headers, config) {
       // console.log('SUCCESS', data, status, headers, config);
@@ -26,8 +30,9 @@ App.controller('feedController', function($scope, $http) {
     getImages(1);
   };
 
-  $scope.nexPage = function() {
-
+  $scope.nextPage = function() {
+    pageCounter++;
+    getImages(pageCounter);
   };
 
 });
