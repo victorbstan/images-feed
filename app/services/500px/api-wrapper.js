@@ -21,8 +21,9 @@ var formatResponse = function(list) {
     image.url = item.image_url;
     image.author = item.user ? item.user.username : null;
     image.votes = item.rating;
-    image.views = null;
+    image.views = item.times_viewed;
     image.caption = item.description || item.name;
+    image.created = new Date(Date.parse(item.created_at));
 
     if (item.comments) {
       // image.comments = {
@@ -96,8 +97,9 @@ exports.getOneImage = function(id, callback) {
     image.url = photo.image_url;
     image.author = photo.user ? photo.user.username : null;
     image.votes = photo.rating;
-    image.views = null;
+    image.views = photo.times_viewed;
     image.caption = photo.description || photo.name;
+    image.created = new Date(Date.parse(photo.created_at)).toString();
 
     if (comments) {
       image.comments = {

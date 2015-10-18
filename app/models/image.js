@@ -10,6 +10,7 @@ exports.Image = function() {
     votes: '',
     views: '',
     caption: '',
+    created: '',
     comments: {
       count: 0,
       data: {

@@ -16,7 +16,7 @@ var formatResponse = function(list) {
   console.log('formatResponse', list.length);
 
   var result = _.map(list, function(item) {
-    // console.log('item', item);
+    console.log('item', item);
 
     if (item.type === 'image') {
       var image = {};
@@ -28,6 +28,7 @@ var formatResponse = function(list) {
       image.votes = item.likes ? item.likes.count : null;
       image.views = null;
       image.caption = item.caption ? item.caption.text : null;
+      image.created = new Date(item.created_time * 1000);
 
       if (item.comments) {
         image.comments = {
@@ -90,6 +91,7 @@ exports.getOneImage = function(id, callback) {
     image.votes = media.likes ? media.likes.count : null;
     image.views = null;
     image.caption = media.caption ? media.caption.text : null;
+    image.created = new Date(item.created_time * 1000);
 
     if (media.comments) {
       image.comments = {
