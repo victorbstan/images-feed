@@ -1,24 +1,33 @@
 'use strict';
 
-App.controller('feedController', function($scope, $http, $location) {
+App.controller('feedController', function($scope, $http) {
 
-  $http.get('/feed')
-  .success(function(data, status, headers, config) {
-    // console.log('SUCCESS', data, status, headers, config);
-    console.log('DATA', data);
-    $scope.feed = data;
-  })
-  .error(function(data, status, headers, config) {
-    console.log('ERROR', data, status);
-    $scope.errors = data;
-  });
+  $scope.feed = [];
 
-  $scope.presentImage = function(data) {
-    console.log('presentImage', data);
+  var appendImagesToFeed = function(images) {
+    $scope.feed = $scope.feed.concat(images);
+    console.log('$scope.feed', $scope.feed);
+  };
 
-    var sanitizedImageUrl = window.encodeURIcomponent(data);
+  var getImages = function(page) {
+    $http.get('/feed', {params: {page: page}})
+    .success(function(data, status, headers, config) {
+      // console.log('SUCCESS', data, status, headers, config);
+      console.log('DATA', data);
+      appendImagesToFeed(data);
+    })
+    .error(function(data, status, headers, config) {
+      console.log('ERROR', data, status);
+      $scope.errors = data;
+    });
+  };
 
-    $location.path('/image/' + sanitizedImageUrl);
+  $scope.init = function() {
+    getImages(1);
+  };
+
+  $scope.nexPage = function() {
+
   };
 
 });

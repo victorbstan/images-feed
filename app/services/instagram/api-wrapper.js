@@ -55,7 +55,7 @@ var formatResponse = function(list) {
   return _.compact(result);
 };
 
-exports.getImages = function(callback) {
+exports.getImages = function(page, callback) {
   // console.log('Instagram getImages');
 
   ig.media_popular(function(error, medias, remaining, limit) {
@@ -63,11 +63,53 @@ exports.getImages = function(callback) {
       console.log('error', error);
       return;
     }
-    // console.log('INSTAGRAM RESPONSE', medias, remaining, limit);
+    console.log('INSTAGRAM RESPONSE', remaining, limit);
 
     var formattedResponse = formatResponse(medias);
     // console.log('INSTAGRAM', formattedResponse);
 
     return callback(formattedResponse);
   });
+};
+
+exports.getOneImage = function(id, callback) {
+  console.log('Instagram getOneImage id', id);
+
+  ig.media(id, function(error, media, remaining, limit) {
+    if (error) {
+      console.log('error', error);
+      return;
+    }
+
+    var image = {};
+
+    image.provider = 'Instagram';
+    image.referenceId = media.id;
+    image.url = media.images ? media.images.standard_resolution.url : null;
+    image.author = media.user ? media.user.username : null;
+    image.votes = media.likes ? media.likes.count : null;
+    image.views = null;
+    image.caption = media.caption ? media.caption.text : null;
+
+    if (media.comments) {
+      image.comments = {
+        count: media.comments.count,
+        data: _.map(media.comments.data, function(comment) {
+          return {
+            username: comment.from.username,
+            text: comment.text,
+            likes: null,
+            created: comment.created_time
+          }
+        })
+      }
+    }
+
+    var imageModel = new Image();
+    imageModel = _.merge(imageModel, image);
+
+    callback(imageModel);
+  });
+
+  // callback(id);
 };

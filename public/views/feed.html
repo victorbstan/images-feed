@@ -1,16 +1,19 @@
 <h1>Feed View</h1>
 
-<ul class="feed-list">
+<ul class="feed-list" ng-init="init()">
   <li ng-repeat="image in feed" class="list-item">
     <div class="card">
       <div class="card-image">
-        <a href="#/" ng-click="presentImage(image)"><img ng-src="{{image.url}}" alt="{{image.url}}"></a>
+        <a href="#/image/{{image.provider}}/{{image.referenceId}}"><img ng-src="{{image.url}}" alt="{{image.url}}"></a>
       </div>
       <div class="card-description">
         <ul>
-          <li>{{image.username}}</li>
-          <li>{{image.vote}}</li>
-          <li>{{image.commentCount}}</li>
+          <li><b>{{image.provider}}</b></li>
+          <li>{{image.referenceId}}</li>
+          <li>{{image.author}}</li>
+          <li>{{image.votes}}</li>
+          <li>{{image.views}}</li>
+          <li>{{image.comments.count}}</li>
           <li>{{image.caption}}</li>
         </ul>
       </div>

@@ -1,3 +1,20 @@
 <div class="" ng-controller="imageController">
   <h1>Image View</h1>
+
+  <div class="image-detail">
+    <div class="image">
+      <img ng-src="{{image.url}}" alt="">
+    </div>
+    <div class="content">
+      <ul>
+        <li><b>{{image.provider}}</b></li>
+        <li>{{image.referenceId}}</li>
+        <li>{{image.author}}</li>
+        <li>{{image.votes}}</li>
+        <li>{{image.views}}</li>
+        <li>{{image.comments.count}}</li>
+        <li>{{image.caption}}</li>
+      </ul>
+    </div>
+  </div>
 </div>

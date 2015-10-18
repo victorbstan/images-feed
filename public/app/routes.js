@@ -10,7 +10,7 @@ App.config([
       templateUrl: '/views/feed.html',
       controller: 'feedController'
     })
-    .when('/image/:id', {
+    .when('/image/:provider/:id', {
       templateUrl: '/views/image.html',
       controller: 'imageController'
     })
