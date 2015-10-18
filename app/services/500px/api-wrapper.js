@@ -12,7 +12,7 @@ var formatResponse = function(list) {
   console.log('formatResponse', list.length);
 
   var result = _.map(list, function(item) {
-    console.log('item', item);
+    // console.log('item', item);
 
     var image = {};
 
@@ -42,14 +42,13 @@ var formatResponse = function(list) {
     imageModel = _.merge(imageModel, image);
 
     return imageModel;
-
   });
 
-  return result;
+  return _.compact(result);
 };
 
 exports.getImages = function(callback) {
-  console.log('500px getImages');
+  // console.log('500px getImages');
 
   api500px.photos.getPopular({'sort': 'created_at', 'rpp': '100'}, function(error, results) {
     if (error) {
@@ -63,7 +62,7 @@ exports.getImages = function(callback) {
     var photos = results.photos;
 
     var formattedResponse = formatResponse(photos);
-    console.log('500px formattedResponse', formattedResponse);
+    // console.log('500px formattedResponse', formattedResponse);
 
     return callback(formattedResponse);
   });

@@ -52,11 +52,11 @@ var formatResponse = function(list) {
     }
   });
 
-  return result;
+  return _.compact(result);
 };
 
 exports.getImages = function(callback) {
-  console.log('Instagram getImages');
+  // console.log('Instagram getImages');
 
   ig.media_popular(function(error, medias, remaining, limit) {
     if (error) {
