@@ -1,5 +1,7 @@
 body {
   font-family: 'Helvetica', 'Arial', sans-serif;
+  background-color: #4b4b4b;
+  color: #ccc;
 
   .feed-list {
     list-style: none;
@@ -7,11 +9,11 @@ body {
     padding: 0;
 
     .card {
-      border: 1px solid #ccc;
+      // border: 1px solid #4b4b4b;
 
       width: 300px;
       height: 500px;
-      background: #ccc;
+      background: #eee;
       margin-right: 10px;
       margin-bottom: 10px;
       float: left;
@@ -23,6 +25,8 @@ body {
       }
 
       .card-description {
+        color: #4b4b4b;
+
         max-height: 200px;
         padding-left: 5px;
         padding-right: 5px;
@@ -32,6 +36,9 @@ body {
           list-style: none;
           margin: 0;
           padding: 0;
+          li {
+            padding-bottom: 5px;
+          }
         }
       }
 
@@ -54,6 +61,9 @@ body {
       list-style: none;
       padding: 0;
       margin: 0;
+      li {
+        padding-bottom: 5px;
+      }
     }
   }
 
@@ -65,5 +75,9 @@ body {
 
   .center {
     text-align: center;
+  }
+
+  .page-button {
+    cursor: pointer;
   }
 }
